@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Vercel Production Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: |
+          webhooks=( ${{ secrets.WEBHOOK_PROD_VERCEL_DOCS }} )
+          for url in ${webhooks[@]}; do
+            curl -X POST $url;
+            if [ $? -ne 0 ]; then
+                exit 1
+            fi
+          done
