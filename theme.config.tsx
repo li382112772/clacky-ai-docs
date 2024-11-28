@@ -8,7 +8,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/clacky-ai/clacky-ai-docs',
   footer: {
-    text: 'Clacky AI Docs',
+    text: 'Clacky AI Docs - 2024 © Clacky.',
   },
 }
 
