@@ -1,4 +1,76 @@
 # Redis
 
-// Start of Selection
-To be added
+This document provides a detailed guide on how to install and use the Redis database within the Clacky development environment. Please follow the steps below.
+
+## Installing the Database
+
+![redis](public/assets/redis.png)
+
+1. Open the Services window: Navigate to Thread, select Services in the CDE Tools, and click to open.
+
+2. Choose the database type: From the database options, select Redis.
+
+3. Click Install: Click the Install button in the upper right corner to begin installing the Redis database.
+
+## Connecting to the Database
+
+After installation, connection information will be displayed. You can connect to the newly installed database using an external Redis client with the external address, or directly through the Thread terminal.
+
+### Using a Client Tool
+
+1. Open a Redis client tool (e.g., RedisInsight).
+2. Create a new connection and enter the following information (example):
+   - Hostname: redis.develop.clackypaas.com
+   - Port: 6379
+   - Auth: r-tXwqlbWLIXSNhWdlUcJy
+3. Click Connect to verify the connection.
+
+> The parameters listed are illustrative. Please substitute them with the actual parameters given post-installation.
+
+### Connecting via Terminal
+
+You can use the following command to connect to the Redis database in the terminal:
+```
+redis-cli -h 30.0.2.135 -p 32796 -a r-tXwqlbWLIXSNhWdlUcJy
+```
+
+> The parameters in the above command are just examples. Please replace them with the actual parameters provided after installation.
+
+## Using the Database in the Project
+
+In the project, you can use environment variables to access the database connection information.
+
+- REDIS_HOST
+- REDIS_PORT
+- REDISCLI_AUTH
+
+The above environment variables are automatically injected into the main container environment after the database is installed.
+
+### Configuration Example
+
+In a Node.js project, you can use the dotenv package to load environment variables:
+
+```
+require('dotenv').config();
+
+const redis = require('redis');
+const client = redis.createClient({
+  url: `redis://:${process.env.REDISCLI_AUTH}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+});
+
+client.on('connect', () => {
+  console.log('Connected to Redis database!');
+});
+
+client.on('error', (err) => {
+  console.error('Redis connection error:', err);
+});
+```
+
+## Removing the Database
+
+To delete the database, click the "Remove" button in the Thread CDE Tools - Services. Be aware that once deleted, the data is permanently lost.
+
+Important considerations:
+- Ensure you back up all important data before removal.
+- You can reinstall at any time after removal, but the data will not be restored.

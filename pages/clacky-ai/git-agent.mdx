@@ -1,0 +1,23 @@
+# Git Agent
+
+The Clacky AI Git Agent enhances the development workflow by automating the process of commits and pull requests within the Thread interface. By taking care of routine Git operations, it allows you to focus on more important tasks, ensuring a seamless and efficient workflow.
+
+![project](public/assets/gitagent.png)
+
+## Commit Changes
+
+Once a project Task Plan is executed and passes testing, users can initiate the commit process by clicking the 'Commit Changes' button. The Git Agent will execute commands in the terminal to:
+
+- **Check for Pending Updates**: It reviews the codebase for any changes that need to be committed.
+- **Diff Code Changes**: The agent generates a diff of the code changes, providing a clear view of what has been modified.
+- **Generate Commit Message**: A commit message is automatically generated for user confirmation. This message summarizes the changes made.
+- **Execute Git Commands**: Upon confirmation, the Git Agent autonomously performs `git add`, `commit`, and `push` operations, ensuring that the code is committed and pushed to the remote repository. Multiple commits and pushes are supported.
+
+## Create Pull Request
+
+After the commit and push operations are completed, users can proceed to create a pull request by clicking the 'Create pull request' button. The Git Agent will:
+
+- **Analyze Branch Changes**: It compares the current branch with the target branch to identify changes.
+- **Generate Pull Request Description**: A structured description of the pull request is generated, summarizing the modifications and their impact.
+- **Create Pull Request**: Once the description is confirmed, the Git Agent uses the GitHub API to create the pull request, facilitating seamless integration into the development workflow.
+

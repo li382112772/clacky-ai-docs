@@ -1,0 +1,63 @@
+# Connecting via SSH
+
+While Clacky is designed as a complete cloud development environment, it still accommodates your local development habits, allowing you to use SSH to connect your local IDE (such as VSCode or Cursor) to Clacky's development container, modify, and synchronize code.
+
+## Understanding SSH
+
+SSH, or Secure Shell, is a protocol designed to provide secure remote access to a command line interface. By using SSH, you can efficiently transfer files and utilize your favorite local Integrated Development Environment (IDE) to edit code within Clacky's development environment, thereby boosting collaboration and productivity.
+
+Here's a brief guide to get started:
+
+- Create an SSH keypair on your local system
+- Add the SSH key to the "SSH" section within any Thread
+- Use an SSH client or an editor that supports SSH connections to connect
+
+
+## Find or Create a keypair
+To configure SSH for your account, you'll need your SSH public key.
+
+#### Figuring out if you already have a keypair
+You can check if you already have a public key by running the following command in a Terminal on your local computer:
+
+```
+ls -l ~/.ssh
+```
+
+If you get an error, that's OK, proceed to Generating a new keypair. 
+
+### Generating a new keypair
+On your machine, open a Terminal (or Command Prompt) window and paste the following command:
+
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+This command checks if a specific SSH public key file already exists. If not, it creates a new SSH key with some sensible parameters.
+
+### Get the contents of your Public Key
+Once you have either confirmed you have a keypair or created one, display the contents of the public key (one of the two similarly named files, suffixed with .pub), as we'll need that for later.
+
+```
+cat ~/.ssh/id_rsa.pub
+```
+
+Save the contents of id_rsa.pub to use later in this article and proceed to add the SSH key to your account.
+
+## Add the SSH key to your account
+
+Click on your avatar in the top right corner of the workspace page to open the 'Manage Account' window.
+
+![workspace](public/assets/avatar.png)
+
+Navigate to the SSH Keys tab, select 'Add SSH Key +', and enter the public key you saved in the pop-up window.
+
+![workspace](public/assets/sshkey.png)
+
+
+## Connecting to your thread
+
+![workspace](public/assets/sshtool.png)
+
+Enter the development thread you wish to connect to, open the CDE Tools SSH window, copy the VS Code remote URL into your browser, authorize the connection to open the VS Code editor, and connect to Clacky remotely.
+
+Alternatively, copy the shell command to connect via the CLI or another IDE.

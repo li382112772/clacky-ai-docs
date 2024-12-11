@@ -1,0 +1,45 @@
+# Clacky AI Chat
+
+## Chat Agent
+
+Clacky provides the Clacky AI Chat window on the right side of the Thread interface and has specifically designed the Chat Agent to meet users' needs for in-depth communication based on the project codebase and AI large language models.
+
+To provide accurate answers, language models need to understand specific details related to your codebase—context. Before analyzing project requirements and understanding and answering user questions, the Chat Agent conducts a [Codebase Analysis](/clacky-ai/chat-agent#codebase-analysis) of the entire codebase and can proactively search for relevant code files/code snippets using tools like 'Search file' and 'read file content' to enrich contextual information.
+
+![project](public/assets/chat.png)
+
+## Codebase Analysis
+
+When a new Thread is initiated, Clacky immediately begins a comprehensive real-time analysis of the project's codebase. This analysis is crucial for understanding the intricate details of the project and involves several key steps:
+
+- **Language and Framework Identification**: Clacky identifies the programming languages and frameworks used within the project, providing a foundational understanding of the project's technological stack.
+
+- **File and Directory Mapping**: The system maps out the entire file and directory structure, offering a clear overview of how the project is organized and where specific resources are located.
+
+- **Dependency Recognition**: Clacky identifies significant project dependencies, which are essential for understanding how different parts of the project interact and rely on external libraries or modules.
+
+- **Component Reusability Assessment**: The analysis also highlights reusable components within the codebase, which can be leveraged to enhance development efficiency and maintainability.
+
+![project](public/assets/analysis.png)
+
+## Edit (Command K)
+
+The Clacky editor supports an Edit feature that can be activated using the Command K shortcut (or "Ctrl K" on Windows/Linux). Upon pressing Command/Ctrl K, the "Prompt Bar" appears, serving as an AI chat input box.
+
+### Edit Selected Code
+
+For inline editing, select the code you wish to modify and enter your prompt. After each generation, you can refine the prompt by adding more instructions and pressing Enter, allowing the AI to regenerate based on your follow-up instructions.
+
+By default, Clacky attempts to find various types of useful information to enhance code generation, such as related files and recently viewed files. These context items are ranked based on their relevance to your edit/generation, and the top-ranked items are retained in the large language model's context.
+
+![project](public/assets/cmdk.png)
+
+### Generate New Code
+
+If no code is selected, Clacky will generate new code based on the prompt you enter. 
+
+## Add to Chat
+
+After selecting a code snippet, you can use the shortcut Cmd + Shift + L (or "Ctrl + Shift + L" on Windows/Linux) to quickly reference this code and send it to the chat window. This feature allows you to engage in a conversation with Clacky AI, minimizing the need for manual copying and pasting. 
+
+![project](public/assets/addtochat.png)

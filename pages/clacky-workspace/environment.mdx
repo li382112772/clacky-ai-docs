@@ -1,0 +1,222 @@
+# Environment
+
+Clacky provides a pre-configured, independent cloud development environment for each Development Thread. This includes database services bound to the main development container of the Development Thread, such as [MySQL](/cloud-services/Mysql), which can be directly installed and connected for use.
+
+The aim is to offer a seamless setup where, after connecting to a remote repository and importing project code, the AI can automatically initialize the development environment without manual configuration.
+
+Currently, Clacky supports the following language frameworks and database services:
+
+| Language | Framework |
+| :---------- | :----------- |
+| Node.js | Next.js, Vue, React, Angular, Express, Static(HTML/CSS/JS)|
+| Golang | Gin |
+| Python | Django, Flask, Fastapi |
+| Ruby | Rails |
+
+| Database Services | Version |
+| :---------- | :----------- |
+| MySQL | 8.0.37 |
+| PostgreSQL | 1.37 |
+| Redis | 7.2.4 |
+| MongoDB | 2.2.5 |
+
+In the Thread development container, we utilize two package managers to handle different types of dependencies:
+
+- **Nix**: Used for core development dependencies such as Node.js and its runtime tools. [Nix](https://nixos.org/) ensures consistency and reproducibility across environments by providing precise version control and isolation. This is essential for development dependencies that are frequently updated or vary between projects.
+
+- **apt**: Employed for system-level packages and tools that require stability and are widely used, including databases and network utilities. apt takes advantage of Ubuntu's package management system to ensure security and reliability.
+
+Detailed Environment Overview:
+
+## Node.js Environment
+
+| Environment Version Name | Package Manager | Runtime Tools | 
+| :---------- | :----------- | :------------- |
+| Node.js 18 | npm 10.7.0 | browser-sync, typescript-language-server, typescript | 
+| Node.js 18 | npm 10.7.0, yarn 1.22.22, pnpm 7,8,9 | browser-sync, typescript-language-server, typescript | 
+| Node.js 20 | npm 10.7.0 | browser-sync, typescript-language-server, typescript | 
+| Node.js 20 | npm 10.7.0, pnpm 7, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Node.js 20 | npm 10.7.0, pnpm 8, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Next.js Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Vue 3 Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| React 15 Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Angular Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Express Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Static(HTML/CSS/JS) Node.js 20 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+| Node.js 22 | npm 10.7.0, pnpm 9, yarn 1.22.22 | browser-sync, typescript-language-server, typescript | 
+
+> Operating system version: Ubuntu 22.04.4 LTS
+
+### Pre-installed System Dependencies
+
+Installed with apt:
+
+```
+## Development Tools
+- vim 8.2.2121
+## 缺失依赖项
+- zlib1g-dev, libssl-dev, libx11-dev 等基础系统库
+- 数据库 CLI客户端
+- unzip, sqlite 等更多常用开发工具，不同语言开发环境可以不同，但需要预置一部分
+```
+
+Installed with nix (dependencies other than language, Runtime tools, and Package Manager):
+ 
+```
+## Version Control Tools
+- git-2.33.3
+## Development Tools
+- ripgrep-14.1.0 # Regex search tool
+- net-tools-2.10 # Network control programs
+- nano-8.0 # Simple text editor
+```
+
+### Installing Additional System Dependencies
+
+Method 1: Using apt
+
+Use the 'sudo apt update' command in the terminal to update and install additional dependencies.
+
+Method 2: Using nix
+
+Edit the Nix configuration file '.1024nix' to add more dependencies or perform other configurations such as exports. Then execute `nix-shell .1024nix` in the terminal to apply them.
+> Additional Notes:
+>   - Some dependencies installed via Nix may require an upgrade of the Nix channel to update their versions.
+>   - Current Nix channel: `24.11`. If you need to upgrade or downgrade, you can contact us for assistance.
+
+
+## Golang Environment
+
+| Environment Version Name | Package Manager | Runtime Tools | 
+| :---------- | :----------- | :------------- |
+| Golang 1.21 | go1.21 | gopls | 
+| Golang 1.22 | go1.22 | gopls | 
+| Golang 1.23 | go1.23 | gopls | 
+
+> Operating system version: Ubuntu 22.04.4 LTS
+
+### Pre-installed System Dependencies
+
+Installed with apt:
+
+```
+## Development Tools
+- vim 8.2.2121
+```
+
+Installed with nix (dependencies other than language, Runtime tools, and Package Manager):
+ 
+```
+## Version Control Tools
+- git-2.33.3
+## Development Tools
+- ripgrep-14.1.0 # Regex search tool
+- net-tools-2.10 # Network control programs
+- nano-8.0 # Simple text editor
+```
+
+### Installing Additional System Dependencies
+
+Method 1: Using apt
+
+Use the 'sudo apt update' command in the terminal to update and install additional dependencies.
+
+Method 2: Using nix
+
+Edit the Nix configuration file '.1024nix' to add more dependencies or perform other configurations such as exports. Then execute `nix-shell .1024nix` in the terminal to apply them.
+> Additional Notes:
+>   - Some dependencies installed via Nix may require an upgrade of the Nix channel to update their versions.
+>   - Current Nix channel: `24.11`. If you need to upgrade or downgrade, you can contact us for assistance.
+
+## Python Environment
+
+| Environment Version Name | Package Manager | Runtime Tools | 
+| :---------- | :----------- | :------------- |
+| Python 3.11 | pip 24, poetry 1.8.3 | gopls | 
+| Python 3.12 | pip 24, poetry 1.8.3 | gopls | 
+| Django 4 Python 3.12 | pip 24, poetry 1.8.3 | gopls, django 4.2.14, pandads 2.2.1, conda 24.4, scipy 1.13.0, pytest 7.2.0, numpy 1.26.4 | 
+| Flask 4 Python 3.12 | pip 24, poetry 1.8.3 | gopls, pandads 2.2.1, scipy 1.13.0, pytest 7.2.0, numpy 1.26.4 | 
+
+> Operating system version: Ubuntu 22.04.4 LTS
+
+### Pre-installed System Dependencies
+
+Installed with apt:
+
+```
+## Development Tools
+- vim 8.2.2121
+```
+
+Installed with nix (dependencies other than language, Runtime tools, and Package Manager):
+ 
+```
+## Version Control Tools
+- git-2.33.3
+## Development Tools
+- ripgrep-14.1.0 # Regex search tool
+- net-tools-2.10 # Network control programs
+- nano-8.0 # Simple text editor
+```
+
+### Installing Additional System Dependencies
+
+Method 1: Using apt
+
+Use the 'sudo apt update' command in the terminal to update and install additional dependencies.
+
+Method 2: Using nix
+
+Edit the Nix configuration file '.1024nix' to add more dependencies or perform other configurations such as exports. Then execute `nix-shell .1024nix` in the terminal to apply them.
+> Additional Notes:
+>   - Some dependencies installed via Nix may require an upgrade of the Nix channel to update their versions.
+>   - Current Nix channel: `24.11`. If you need to upgrade or downgrade, you can contact us for assistance.
+
+## Ruby Environment
+
+| Environment Version Name | Package Manager | Runtime Tools | 
+| :---------- | :----------- | :------------- |
+| Ruby 2.7 | gem 3.2.26 | rspec;libyaml | 
+| Ruby 3.0 | gem 3.2.26 | rspec;libyaml | 
+| Ruby 3.1 | gem 3.5.9 | rspec 3.13.0 | 
+| Ruby 3.2 | gem 3.5.9 | rspec 3.13.0 | 
+| Ruby 3.3 | gem 3.5.9 | rspec 3.13.0 |
+| Rails 6 Ruby 2.7 | gem 3.2.26 | rspec 3.13.0 | 
+| Rails 7 Ruby 3.1 | gem 3.5.9 | rspec 3.13.0 |  
+
+> Operating system version: Ubuntu 22.04.4 LTS
+
+### Pre-installed System Dependencies
+
+Installed with apt:
+
+```
+## Development Tools
+- vim 8.2.2121
+```
+
+Installed with nix (dependencies other than language, Runtime tools, and Package Manager):
+ 
+```
+## Version Control Tools
+- git-2.33.3
+## Development Tools
+- ripgrep-14.1.0 # Regex search tool
+- net-tools-2.10 # Network control programs
+- nano-8.0 # Simple text editor
+```
+
+### Installing Additional System Dependencies
+
+Method 1: Using apt
+
+Use the 'sudo apt update' command in the terminal to update and install additional dependencies.
+
+Method 2: Using nix
+
+Edit the Nix configuration file '.1024nix' to add more dependencies or perform other configurations such as exports. Then execute `nix-shell .1024nix` in the terminal to apply them.
+> Additional Notes:
+>   - Some dependencies installed via Nix may require an upgrade of the Nix channel to update their versions.
+>   - Current Nix channel: `24.11`. If you need to upgrade or downgrade, you can contact us for assistance.

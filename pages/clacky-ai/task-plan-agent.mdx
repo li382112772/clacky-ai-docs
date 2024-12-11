@@ -1,0 +1,39 @@
+# Task Plan Agent
+
+We designed Clacky with the goal of assisting human users in addressing real project requirements. To achieve this, we have developed a dedicated Task Plan Agent that leads the process through a comprehensive product development workflow: receiving requirements, analyzing them, planning the development strategy, executing development tasks, and conducting checks and tests.
+
+## Planning
+
+On the project's entry page, users can import tasks from an issue platform by entering '#' or manually input requirements. After the Chat Agent clarifies and confirms these requirements, the Task Plan Agent will reference the confirmed needs, search the context and codebase, and generate a requirements specification document. This document is then presented to the user for confirmation, allowing them to manually modify or add details as needed.
+
+![project](public/assets/specification.png)
+
+Once the requirements specification is confirmed, Clacky will create a new Thread and transition into it. Within this Thread, the Task Plan Agent will gather additional information, including relevant code files/snippets, accessible knowledge bases, and Playbooks. After careful consideration, it will formulate a development plan to address the current requirements, allowing you to modify the plan as necessary.
+
+![project](public/assets/taskplan.png)
+
+## Execution
+
+After the user confirms or manually adjusts the development plan and approves execution, the Task Plan Agent autonomously follows the task plan, utilizing Clacky's tools to generate and write code or execute relevant commands in the terminal.
+
+During this process, Clacky introduces innovative "Task Time Machine" and code snapshot technologies, providing developers with complete visualization and control over AI actions. You can track, review, and adjust every modification made by the AI, ensuring the development process remains under your control.
+
+![project](public/assets/workfollow.png)
+
+## Review
+
+Once the task execution is complete, in addition to the [Smart Detect Agent](/clacky-ai/smart-detect-agent) autonomously checking the task execution results, users can also leverage the "Task Time Machine" feature to replay the entire task execution process. This allows you to pause at any point to review the specific changes of the current action.
+
+![project](public/assets/playback.png)
+
+Revert AI changes and manually modify
+
+![project](public/assets/revert.png)
+
+Or adjust the prompt to let the AI regenerate code changes:
+
+![project](public/assets/reprompt.png)
+
+## Additional
+
+Clacky AI has made modifications based on the initial requirements. After running project tests, if further needs or issues are identified, you can continue to communicate new requirements to Clacky AI. The Task Plan Agent will append new steps to the current task plan and execute them accordingly.

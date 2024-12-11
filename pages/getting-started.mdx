@@ -1,0 +1,43 @@
+# Getting Started
+
+Upon successful registration, we create an initial Workspace for each user. This collaborative environment allows you, your team members, and Clacky AI to work together seamlessly. Within this workspace, you can create projects and collaborate with Clacky's AI virtual software engineer, to address real issues in your projects.
+
+## Creating a Project
+
+To create a project, simply connect to an existing repository:
+
+![workspace](public/assets/workspace.png)
+
+Currently, we only support connecting to GitHub repositories. Support for GitLab and BitBucket is in the pipeline, so stay tuned for these upcoming features.
+
+
+## Initializing the Clacky development environment
+
+Before creating threads and collaborating with Clack y on specific project issues, we need to set up the development environment for your project. This process is similar to configuring a local development environment, but with Clacky, it's much simpler. Just follow the prompts and click confirm - Clacky will autonomously handle the configuration work.
+
+![project](public/assets/Initializing.png)
+
+Once Clacky completes the setup, you'll need to submit these initial changes as a Pull Request to GitHub and merge them into your project's default branch. This ensures that the initialization is automatically applied to all subsequent threads.
+
+> Clacky currently offers pre-configuration and support for development environments using the following technology stacks:
+>   - Node.js (Next.js, Vue, React, Angular, Express, Static(HTML/CSS/JS))
+>   - Golang (Gin)
+>   - Python (Django, Flask, Fastapi)
+>   - Ruby (Rails)
+
+> Does not support other projects, so there is no need to attempt importing, creating, or initializing them.
+> For more details, please refer to the [Environment](/clacky-workspace/environment) documentation.
+
+## Create a new development thread
+
+Starting a new [development thread](/clacky-workspace/dev-thread) is simple. Begin by having a conversation with Clacky, which will automatically identify the task requirements and generate a specification based on your discussion. Once you are satisfied with the details, click the button to start a new development thread.
+
+![project](public/assets/specification.png)
+
+In the new development thread, you can work with Clacky to write code and solve problems.
+
+We have developed a robust AI Agent work model that can perform in-depth analysis and indexing of project code repositories. Coupled with a [mature workflow](/clacky-ai/task-plan-agent), this significantly enhances the quality of the "first" work output. 
+
+Additionally, we provide a comprehensive human intervention solution, allowing for feedback and guidance during Clacky's operation, and enabling direct modifications to the code for adjustments (without switching to a local environment) using Clacky's [Chat](/clacky-ai/chat-agent), [Command K](/clacky-ai//chat-agent#edit-command-k), and other assistant features.
+
+Lastly, with the [Git Agent](/clacky-ai/git-agent), you can submit your changes and create a pull request.
